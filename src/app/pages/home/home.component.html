@@ -1,0 +1,23 @@
+<app-header (searchChange)="filterData($event)" ></app-header>
+<div class="container mt-5" >
+    <mat-grid-list cols="3" rowHeight="2:1"   >
+        <mat-grid-tile *ngFor="let user of filteredData " [@itemAnimation] > 
+            <mat-card class="user-card bg-body-tertiary rounded" (click)="viewUser(user.id)" >
+                <mat-card-header>
+                  <div mat-card-avatar class="user-avatar">
+                    <img [src]="user.avatar" height="50" width="50"  alt="" srcset="">
+                  </div>
+                  <mat-card-subtitle>USER ID: {{ user.id }}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <mat-card-title>{{ user.first_name }} {{ user.last_name }}</mat-card-title>
+                  <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
+                </mat-card-content>
+              </mat-card>
+        </mat-grid-tile>
+       
+    </mat-grid-list>
+    <mat-paginator [length]="totalItems" [pageSize]="itemsPerPage" 
+               (page)="onPageChange($event)">
+</mat-paginator>
+</div>
